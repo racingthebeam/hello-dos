@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker build -t hello-dos --platform linux/amd64 .
+

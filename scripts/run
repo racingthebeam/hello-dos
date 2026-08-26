@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Specify the DOSBox executable here
+# DOSBOX=dosbox
+
+# e.g. if you're using dosbox-x on macOS, use this
+DOSBOX=/Applications/dosbox-x.app/Contents/MacOS/dosbox-x
+
+$DOSBOX -c "mount c build " -c "c:" -c "GAME.EXE" -c "exit"
+
