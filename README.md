@@ -1,6 +1,6 @@
 # hello-dos
 
-A minimal starting point for making a C++ game with DJGPP 14.2 and Allegro.
+A minimal starting point for making a C++ game with DJGPP 12.2 and Allegro 4.2.3.
 
 I threw this together because I wanted to be able to easily work on my [2026 DOS jam](https://itch.io/jam/ms-tres) entry across a couple of different machines. Tested on Linux (amd64) and macOS (Apple Silicon).
 
