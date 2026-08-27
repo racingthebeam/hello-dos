@@ -15,17 +15,23 @@ RUN \
 
 # Install Allegro
 # https://github.com/superjamie/allegro-4.2.3.1-xc
-RUN git clone --depth 1 https://github.com/superjamie/allegro-4.2.3.1-xc.git allegro
-COPY support/xmake.sh /work/allegro/xmake.sh
-RUN cd allegro && chmod +x xmake.sh && ./xmake.sh lib
-
+#
 # Put Allegro lib and includes in /allegro - I couldn't get it to work when I placed
 # them in the default DJGPP search paths.
 # So we need to set -I/allegro and -L/allegro for gcc.
-RUN mkdir -p /allegro \
-    && cp allegro/lib/djgpp/liballeg.a /allegro/ \
-    && cp -R allegro/include/* /allegro/
+RUN git clone --depth 1 https://github.com/superjamie/allegro-4.2.3.1-xc.git allegro
+COPY support/xmake.sh /work/allegro/xmake.sh
+RUN cd allegro \
+    && chmod +x xmake.sh \
+    && ./xmake.sh lib \
+    && mkdir -p /allegro \
+    && cp lib/djgpp/liballeg.a /allegro/ \
+    && cp -R include/* /allegro/ \
+    && cd .. \
+    && rm -rf allegro
 
 # Set up PATH so all of our tools are accessible
 ENV PATH="$PATH:/usr/local/djgpp/bin"
+
+# And set prompt for interactive shells
 ENV PS1="\w $ "
