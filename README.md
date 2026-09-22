@@ -8,7 +8,7 @@ I threw this together because I wanted to be able to easily work on my [2026 DOS
 
   - Toolchain lives in a Docker container - nothing to faff around with locally
   - Integrated Allegro 4.2.3
-  - Bundles CWSDPMI.EXE for protected mode support
+  - Bundles `CWSDPMI.EXE` for protected mode support
   - Includes a small example "Hello World" program, by Michiel Sikma
 
 ## Bundled Libraries
