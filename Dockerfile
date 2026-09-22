@@ -30,6 +30,9 @@ RUN cd allegro \
     && cd .. \
     && rm -rf allegro
 
+# Copy bundled libraries into image
+COPY support/lib/* /allegro
+
 # Set up PATH so all of our tools are accessible
 ENV PATH="$PATH:/usr/local/djgpp/bin"
 

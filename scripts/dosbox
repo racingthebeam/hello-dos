@@ -1,0 +1,5 @@
+#!/bin/bash
+
+: "${DOSBOX:=dosbox}"
+$DOSBOX -c "mount c build " -c "c:"
+

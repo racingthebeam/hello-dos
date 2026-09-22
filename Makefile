@@ -1,25 +1,21 @@
-CXX := i586-pc-msdosdjgpp-g++
+# Makefile - runs on host system
 
-FLAGS := -I/allegro -L/allegro -march=i586 -O2 -Wall
-CFLAGS := $(FLAGS) -fgnu89-inline
-CXXFLAGS := $(FLAGS)
+all: game
+clean: clean_game
 
-SRC := src/main.cpp
+run: all
+	./scripts/run
 
-BUILD_DIR := build
-BUILD_EXE := $(BUILD_DIR)/GAME.EXE
+#
+# Game - build in container
 
-all: $(BUILD_EXE)
+game:
+	./scripts/make
 
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
-	cp support/CWSDPMI.EXE $(BUILD_DIR)
+clean_game:
+	./scripts/make clean
 
-$(BUILD_EXE): $(BUILD_DIR) $(SRC)
-	$(CXX) $(SRC) $(CXXFLAGS) -lalleg -o $@
-
-clean:
-	rm -rf $(BUILD_DIR)
-
-.PHONY: all clean
+.PHONY: \
+	all clean run \
+	game clean_game
 

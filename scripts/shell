@@ -1,4 +1,5 @@
 #!/bin/bash
 
-docker run -it --rm --platform linux/amd64 -v "$PWD":/work hello-dos /bin/bash -i
+: "${CONTAINER_NAME:='hello-dos'}"
+docker run -it --rm --platform linux/amd64 -v "$PWD":/work $CONTAINER_NAME /bin/bash -i
 

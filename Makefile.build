@@ -1,0 +1,43 @@
+# Makefile.build - runs in container
+
+CXX := i586-pc-msdosdjgpp-g++
+
+FLAGS := -I/allegro -L/allegro -march=i586 -O2 -Wall
+CFLAGS := $(FLAGS) -fgnu89-inline
+CXXFLAGS := $(FLAGS)
+
+LIBS := -lalleg
+
+#
+# Bundled libraries - uncomment to enable
+# (these all land in /allegro)
+
+# jgmod - mod file player
+# Include: #include "jgmod.h"
+# LIBS += -ljgmod
+
+#
+#
+
+SRC := \
+	   src/main.cpp
+
+BUILD_DIR := build
+BUILD_EXE := $(BUILD_DIR)/GAME.EXE
+
+all: $(BUILD_EXE) $(BUILD_DIR)/CWSDPMI.EXE
+
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+$(BUILD_DIR)/CWSDPMI.EXE: support/CWSDPMI.exe $(BUILD_DIR)
+	cp $< $@
+
+$(BUILD_EXE): $(BUILD_DIR) $(SRC)
+	$(CXX) $(SRC) $(CXXFLAGS) $(LIBS) -o $@
+
+clean:
+	rm -rf $(BUILD_DIR)
+
+.PHONY: all clean
+

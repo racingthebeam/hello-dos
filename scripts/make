@@ -1,4 +1,5 @@
 #!/bin/bash
 
-docker run --rm --platform linux/amd64 -v .:/work hello-dos make $@
+: "${CONTAINER_NAME:='hello-dos'}"
+docker run --rm --platform linux/amd64 -v .:/work $CONTAINER_NAME make -f Makefile.build $@
 
